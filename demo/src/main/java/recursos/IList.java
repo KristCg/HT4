@@ -14,4 +14,7 @@ public interface IList<T> {
     public boolean contains(T value);
     public int indexOf(T value);
     public int lastIndexOf(T value);
+    public void add(int index, T value);
+    public T remove(int index);
+    public T get(int index);
 }

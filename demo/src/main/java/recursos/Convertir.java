@@ -1,5 +1,7 @@
 package recursos;
 
+import java.util.Stack;
+
 public class Convertir{
     int preced(char ch){
         if(ch == '+' || ch == '-'){
@@ -17,9 +19,9 @@ public class Convertir{
      }
      
      public static inToPost(string infix, IStack<Character> stack){
-        Stack<Character> stk = new Stack<T>();
+        Stack<Character> stk = new Stack<>();
         stk.push('#');
-        String postfix = new String();
+        StringBuilder postfix = new StringBuilder();
         for(char ch : infix.toCharArray()){
             if(i.isLetterOrDigit(ch)){
                 postfix.append(ch);
@@ -31,21 +33,21 @@ public class Convertir{
                 stk.push(ch);
             }
             else if(ch == ')'){
-                while(stk.isEmpty() == true && stk.peek() != '(' && stack.peek() != '#'){
+                while (!stk.isEmpty() && stk.peek() != '(' && stk.peek() != '#') {
                     postfix.append(stk.pop());
                 }
                 stk.pop();
             }
             else{
-                while(stk.isEmpty == false && preced(ch) <= preced(stk.peek())){
-                    postfix.append(stack.pop());
+                while (!stk.isEmpty() && stack.peek() != null && preced(ch) <= preced(stk.peek())) {
+                    postfix.append(stk.pop());
                 }
-                stack.push(ch);
+                stk.push(ch);
             }
         }
-        while(stk.isEmpty() == false){
+        while(!stk.isEmpty() && stk.peek() != '#'){
             postfix.append(stk.pop());
         }
-        return postfix;
+        return postfix.toString();
     }
 }
