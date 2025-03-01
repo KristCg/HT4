@@ -1,5 +1,5 @@
 package recursos;
-
+import recursos.*;
 import java.util.Scanner;
 
 public class Main {
@@ -15,7 +15,6 @@ public class Main {
         
         IStack<String> stack = StackFactory.createStack(opcionStack);
         
-        // Si se elige lista, preguntar por su tipo
         if (opcionStack == 3) {
             System.out.println("Seleccione la implementación de la lista:");
             System.out.println("1. Simplemente encadenada");
@@ -30,7 +29,7 @@ public class Main {
         System.out.println("Ingrese la expresión infix:");
         String infix = sc.nextLine();
         
-        String postfix = Convertir.infixToPostfix(infix);
+        String postfix = Convertir.inToPost(infix);
         System.out.println("Expresión postfix: " + postfix);
         
         int resultado = Calculadora.evaluar(postfix);
